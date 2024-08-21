@@ -19,7 +19,7 @@ export default function Home() {
         return 'standalone' in window.navigator && window.navigator.standalone;
       };
 
-      // If it's an iOS device and not in standalone mode, show the prompt
+      // If it&apos;s an iOS device and not in standalone mode, show the prompt
       if (isIos() && !isInStandaloneMode()) {
         setShowPrompt(true);
       }
@@ -136,7 +136,7 @@ export default function Home() {
           Converting My Next.js 14 App to a PWA
         </h2>
         <p className="text-lg mb-4">
-          I've recently transformed my Next.js 14 application into a Progressive Web App (PWA). This allows my app to be installed on devices, work offline, and deliver a more app-like experience. Here’s a brief overview of what I did:
+          I&apos;ve recently transformed my Next.js 14 application into a Progressive Web App (PWA). This allows my app to be installed on devices, work offline, and deliver a more app-like experience. Here&apos;s a brief overview of what I did:
         </p>
         <ol className="list-decimal list-inside mb-8 text-left">
           <li>
@@ -152,7 +152,11 @@ export default function Home() {
     
      
       </div>
-      <PWAPrompt />
+      <PWAPrompt 
+  timesToShow={3} 
+  promptOnVisit={1} 
+  copyTitle="Install My App" 
+/>
     </main>
   );
 }
