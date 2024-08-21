@@ -1,10 +1,5 @@
 'use client'
 import Image from "next/image";
-import dynamic from 'next/dynamic';
-
-const PWADetector = dynamic(() => import('@/components/PwaDetector'), {
-  ssr: false,
-});
 
 export default function Home() {
 
@@ -136,7 +131,6 @@ export default function Home() {
     
      
       </div>
-      <PWADetector/>
     </main>
   );
 }
