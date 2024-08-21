@@ -1,13 +1,35 @@
+'use client'
 import Image from "next/image";
-
+import { useState,useEffect } from "react";
+import PWAPrompt from 'react-ios-pwa-prompt'
 export default function Home() {
+
+  const [showPrompt, setShowPrompt] = useState(false);
+
+  useEffect(() => {
+    // Check if the code is running in the browser
+    if (typeof window !== 'undefined') {
+      const isIos = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return /iphone|ipad|ipod/.test(userAgent);
+      };
+
+      // Check if the device is in standalone mode
+      const isInStandaloneMode = () => {
+        return 'standalone' in window.navigator && window.navigator.standalone;
+      };
+
+      // If it's an iOS device and not in standalone mode, show the prompt
+      if (isIos() && !isInStandaloneMode()) {
+        setShowPrompt(true);
+      }
+    }
+  }, []);
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
+
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
@@ -108,6 +130,29 @@ export default function Home() {
           </p>
         </a>
       </div>
+
+      <div className="mt-16 text-center lg:w-full lg:max-w-5xl lg:text-left">
+        <h2 className="mb-8 text-3xl font-bold">
+          Converting My Next.js 14 App to a PWA
+        </h2>
+        <p className="text-lg mb-4">
+          I've recently transformed my Next.js 14 application into a Progressive Web App (PWA). This allows my app to be installed on devices, work offline, and deliver a more app-like experience. Here’s a brief overview of what I did:
+        </p>
+        <ol className="list-decimal list-inside mb-8 text-left">
+          <li>
+            <strong>Set up a service worker:</strong> I used <code>@ducanh2912/next-pwa</code> to configure a service worker that caches essential assets and routes.
+          </li>
+          <li>
+            <strong>Created a manifest file:</strong> The <code>manifest.json</code> defines how the app should behave when installed on a device, including icons, background color, and display options.
+          </li>
+          <li>
+            <strong>Optimized for offline support:</strong> I ensured that the app can function offline by caching critical routes and assets.
+          </li>
+        </ol>
+    
+     
+      </div>
+      <PWAPrompt />
     </main>
   );
 }
