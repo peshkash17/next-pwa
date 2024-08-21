@@ -19,7 +19,7 @@ export default function Home() {
         return 'standalone' in window.navigator && window.navigator.standalone;
       };
 
-      // If it&apos;s an iOS device and not in standalone mode, show the prompt
+      // If it's an iOS device and not in standalone mode, show the prompt
       if (isIos() && !isInStandaloneMode()) {
         setShowPrompt(true);
       }
@@ -152,11 +152,13 @@ export default function Home() {
     
      
       </div>
-      <PWAPrompt 
-  timesToShow={3} 
-  promptOnVisit={1} 
-  copyTitle="Install My App" 
-/>
+      {showPrompt && (
+        <PWAPrompt
+          timesToShow={3}
+          promptOnVisit={1}
+          copyTitle="Install My App"
+        />
+      )}
     </main>
   );
 }
