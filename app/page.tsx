@@ -1,7 +1,11 @@
 'use client'
 import Image from "next/image";
-import { useState,useEffect } from "react";
-import PWADetector from "@/components/PwaDetector";
+import dynamic from 'next/dynamic';
+
+const PWADetector = dynamic(() => import('@/components/PwaDetector'), {
+  ssr: false,
+});
+
 export default function Home() {
 
  

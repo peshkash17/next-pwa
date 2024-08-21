@@ -8,7 +8,7 @@ export default function PWADetector() {
 
   useEffect(() => {
     // Check if the code is running in the browser
-  
+    if (typeof window !== 'undefined') {
       const isIos = () => {
         const userAgent = window.navigator.userAgent.toLowerCase();
         return /iphone|ipad|ipod/.test(userAgent);
@@ -23,9 +23,9 @@ export default function PWADetector() {
       if (isIos() && !isInStandaloneMode()) {
         setShowPrompt(true);
       }
-   
+    }
   }, []);
-
+  
 
   return (
     <div>
